@@ -19,10 +19,10 @@ echo "persist.vendor.sys.fp.fod.size.width_height=190,190" >> $1/build.prop
 echo "DEVICE_PROVISIONED=1" >> $1/build.prop
 
 # Animation improve
-echo debug.sf.hw=1 >> $1/build.prop
-echo debug.sf.latch_unsignaled=1 >> $1/build.prop
-echo persist.sys.composition.type=mdp >> $1/build.prop
-echo debug.composition.type=mdp >> $1/build.prop
+echo "debug.sf.hw=1" >> $1/build.prop
+echo "debug.sf.latch_unsignaled=1" >> $1/build.prop
+echo "persist.sys.composition.type=mdp" >> $1/build.prop
+echo "debug.composition.type=mdp" >> $1/build.prop
 
 # drop dirac
 rm -rf $1/priv-app/DiracAudioControlService

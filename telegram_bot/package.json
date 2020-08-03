@@ -22,7 +22,7 @@
     "better-queue": "3.8.10",
     "bluebird": "3.7.2",
     "boolbase": "1.0.0",
-    "browser-process-hrtime": "0.1.3",
+    "browser-process-hrtime": "1.0.0",
     "bson": "4.0.4",
     "buffer-shims": "1.0.0",
     "caseless": "0.12.0",

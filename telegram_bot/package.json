@@ -130,7 +130,7 @@
     "tdl-tdlib-ffi": "2.0.0",
     "telegram-node-bot": "github:Vachounet/telegram-node-bot",
     "tglib": "3.0.5",
-    "thunky": "1.0.3",
+    "thunky": "1.1.0",
     "tiny_request": "1.0.13",
     "to-mongodb-core": "2.0.0",
     "tough-cookie": "4.0.0",

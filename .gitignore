@@ -8,4 +8,4 @@ input
 working
 __pycache__/
 telegram_bot/config.js
-tekegram_bot/node_modules/*
+telegram_bot/node_modules/*

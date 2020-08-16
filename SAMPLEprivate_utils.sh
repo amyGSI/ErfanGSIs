@@ -74,15 +74,9 @@ UPLOAD()
         fi
     fi
 
-    rm -rf "$IMAGEABPATH" "$IMAGEAOPATH"
-
-    if [ $AB == true ] && [ $AONLY == true ]; then DEVICE_TEXT="A/AB Devices"; fi
-    if [ $AB == true ] && [ $AONLY == false ]; then DEVICE_TEXT="AB Devices"; fi
-    if [ $AB == false ] && [ $AONLY == true ]; then DEVICE_TEXT="A-Only Devices"; fi
-
-    if [[ "$outputtype" == "Aonly" ]]; then
+    if [ "$outputtype" == "Aonly" ]; then
         # SourceForge Upload script by github.com/yukosky
-        cd ../output
+        cd "${OUTPUTDIR}"
         echo "-> Uploading to SourceForge"
         expect -c "
         spawn sftp $USER@frs.sourceforge.net
@@ -111,6 +105,12 @@ UPLOAD()
         send \"bye\r\"
         interact"
     fi
+
+    rm -rf "$IMAGEABPATH" "$IMAGEAOPATH"
+
+    if [ $AB == true ] && [ $AONLY == true ]; then DEVICE_TEXT="A/AB Devices"; fi
+    if [ $AB == true ] && [ $AONLY == false ]; then DEVICE_TEXT="AB Devices"; fi
+    if [ $AB == false ] && [ $AONLY == true ]; then DEVICE_TEXT="A-Only Devices"; fi
 
     MSGTEXT="*$SRCTYPENAME GSI For $DEVICE_TEXT*  \n  \n"
     if [[ "$URL" == "http"* ]]; then

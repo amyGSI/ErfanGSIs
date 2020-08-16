@@ -40,6 +40,11 @@ UPLOAD()
     INFOAONAME="${SRCTYPENAME}-Aonly-*-${DATE}-*.txt"
     IMAGEAOPATH="${OUTPUTDIR}/${IMAGEAONAME}"
     INFOAOPATH="${OUTPUTDIR}/${INFOAONAME}"
+    
+    # Set your sourceforge.net credentials
+    USER=
+    SFDIR=
+    PASSWORD=
 
     if [ $AB == true ]; then
         IMAGEABPATH="$(ls $IMAGEABPATH)"
@@ -74,6 +79,36 @@ UPLOAD()
     if [ $AB == true ] && [ $AONLY == true ]; then DEVICE_TEXT="A/AB Devices"; fi
     if [ $AB == true ] && [ $AONLY == false ]; then DEVICE_TEXT="AB Devices"; fi
     if [ $AB == false ] && [ $AONLY == true ]; then DEVICE_TEXT="A-Only Devices"; fi
+
+    if [[ "$outputtype" == "Aonly" ]]; then
+        # SourceForge Upload script by github.com/yukosky
+        expect -c "
+        spawn sftp $USER@frs.sourceforge.net
+        expect \"Password\"
+        send \"$PASSWORD\r\"
+        expect \"sftp> \"
+        send \"cd $SFDIR\r\"
+        set timeout -1.
+        send \"put *Aonly*.7z\r\"
+        expect \"Uploading\"
+        expect \"100%\"
+        expect \"sftp>\"
+        send \"bye\r\"
+        interact"
+        expect -c "
+        spawn sftp $USER@frs.sourceforge.net
+        expect \"Password\"
+        send \"$PASSWORD\r\"
+        expect \"sftp> \"
+        send \"cd $SFDIR\r\"
+        set timeout -1
+        send \"put *AB*.7z\r\"
+        expect \"Uploading\"
+        expect \"100%\"
+        expect \"sftp>\"
+        send \"bye\r\"
+        interact"
+    fi
 
     MSGTEXT="*$SRCTYPENAME GSI For $DEVICE_TEXT*  \n  \n"
     if [[ "$URL" == "http"* ]]; then

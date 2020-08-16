@@ -54,7 +54,7 @@ UPLOAD()
         INFONAME=$INFOABNAME
         INFOPATH=$INFOABPATH
         if [[ -f "$IMAGEABPATH" ]]; then
-            echo "Compressing $IMAGEABPATH-${TIME}.7z"
+            echo "-> Compressing $IMAGEABPATH-${TIME}.7z"
             7z a "$IMAGEABPATH-${TIME}.7z" "$IMAGEABPATH" 2>/dev/null >> "$OUTPUTDIR/zip.log"
             mv "$IMAGEABPATH-${TIME}.7z" /data/web/gsis/
         fi
@@ -68,7 +68,7 @@ UPLOAD()
         INFONAME=$INFOAONAME
         INFOPATH=$INFOAOPATH
         if [[ -f "$IMAGEAOPATH" ]]; then
-            echo "Compressing $IMAGEAOPATH-${TIME}.7z"
+            echo "-> Compressing $IMAGEAOPATH-${TIME}.7z"
             7z a "$IMAGEAOPATH-${TIME}.7z" "$IMAGEAOPATH" 2>/dev/null >> "$OUTPUTDIR/zip.log"
             mv "$IMAGEAOPATH-${TIME}.7z" /data/web/gsis/
         fi
@@ -80,9 +80,10 @@ UPLOAD()
     if [ $AB == true ] && [ $AONLY == false ]; then DEVICE_TEXT="AB Devices"; fi
     if [ $AB == false ] && [ $AONLY == true ]; then DEVICE_TEXT="A-Only Devices"; fi
 
-    cd ../output
     if [[ "$outputtype" == "Aonly" ]]; then
         # SourceForge Upload script by github.com/yukosky
+        cd ../output
+        echo "-> Uploading to SourceForge"
         expect -c "
         spawn sftp $USER@frs.sourceforge.net
         expect \"Password\"

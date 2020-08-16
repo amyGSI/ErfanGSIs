@@ -80,6 +80,7 @@ UPLOAD()
     if [ $AB == true ] && [ $AONLY == false ]; then DEVICE_TEXT="AB Devices"; fi
     if [ $AB == false ] && [ $AONLY == true ]; then DEVICE_TEXT="A-Only Devices"; fi
 
+    cd ../output
     if [[ "$outputtype" == "Aonly" ]]; then
         # SourceForge Upload script by github.com/yukosky
         expect -c "

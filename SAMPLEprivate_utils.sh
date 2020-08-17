@@ -86,7 +86,7 @@ UPLOAD()
         send \"put $IMAGEAONAME-${TIME}.7z\r\"
         expect \"sftp>\"
         send \"bye\r\"
-        interact"
+        interact" > /dev/null 2>&1;
         expect -c "
         spawn sftp $USER@frs.sourceforge.net
         expect \"Password\"
@@ -97,7 +97,7 @@ UPLOAD()
         send \"put $IMAGEABNAME-${TIME}.7z\r\"
         expect \"sftp>\"
         send \"bye\r\"
-        interact"
+        interact" > /dev/null 2>&1;
         echo "-> Upload to SourceForge done"
     fi
 

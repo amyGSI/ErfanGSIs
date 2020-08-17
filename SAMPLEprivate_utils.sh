@@ -87,7 +87,7 @@ UPLOAD()
         expect \"sftp> \"
         send \"cd $SFDIR\r\"
         set timeout -1.
-        send \"put *Aonly*.7z\r\"
+        send \"put $IMAGEAONAME-${TIME}.7z\r\"
         expect \"Uploading\"
         expect \"100%\"
         expect \"sftp>\"
@@ -100,7 +100,7 @@ UPLOAD()
         expect \"sftp> \"
         send \"cd $SFDIR\r\"
         set timeout -1
-        send \"put *AB*.7z\r\"
+        send \"put $IMAGEABNAME-${TIME}.7z\r\"
         expect \"Uploading\"
         expect \"100%\"
         expect \"sftp>\"

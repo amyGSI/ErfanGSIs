@@ -101,15 +101,6 @@ LEAVE()
     exit 1
 }
 
-echo " "
-echo " "
-echo "*********************************"
-echo "*          ErfanGSIs            *"
-echo "*       Hitsuki Edition         *"
-echo "*********************************"
-echo " "
-echo " "
-
 echo "-> Updating tools..."
 "$PROJECT_DIR"/update.sh
 

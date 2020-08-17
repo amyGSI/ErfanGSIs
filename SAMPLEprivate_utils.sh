@@ -56,7 +56,6 @@ UPLOAD()
         if [[ -f "$IMAGEABPATH" ]]; then
             echo "-> Compressing $IMAGEABPATH-${TIME}.7z"
             7z a "$IMAGEABPATH-${TIME}.7z" "$IMAGEABPATH" 2>/dev/null >> "$OUTPUTDIR/zip.log"
-            mv "$IMAGEABPATH-${TIME}.7z" /data/web/gsis/
         fi
     fi
 
@@ -70,7 +69,6 @@ UPLOAD()
         if [[ -f "$IMAGEAOPATH" ]]; then
             echo "-> Compressing $IMAGEAOPATH-${TIME}.7z"
             7z a "$IMAGEAOPATH-${TIME}.7z" "$IMAGEAOPATH" 2>/dev/null >> "$OUTPUTDIR/zip.log"
-            mv "$IMAGEAOPATH-${TIME}.7z" /data/web/gsis/
         fi
     fi
 
@@ -80,16 +78,12 @@ UPLOAD()
         echo "-> Uploading to SourceForge"
         expect -c "
         spawn sftp $USER@frs.sourceforge.net
-        expect \"yes/no\"
-        send \"yes\r\"
         expect \"Password\"
         send \"$PASSWORD\r\"
         expect \"sftp> \"
         send \"cd $SFDIR\r\"
         set timeout -1.
         send \"put $IMAGEAONAME-${TIME}.7z\r\"
-        expect \"Uploading\"
-        expect \"100%\"
         expect \"sftp>\"
         send \"bye\r\"
         interact"
@@ -101,11 +95,10 @@ UPLOAD()
         send \"cd $SFDIR\r\"
         set timeout -1
         send \"put $IMAGEABNAME-${TIME}.7z\r\"
-        expect \"Uploading\"
-        expect \"100%\"
         expect \"sftp>\"
         send \"bye\r\"
         interact"
+        echo "-> Upload to SourceForge done"
     fi
 
     rm -rf "$IMAGEABPATH" "$IMAGEAOPATH"

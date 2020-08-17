@@ -74,12 +74,14 @@ UPLOAD()
         fi
     fi
 
-    if [ "$outputtype" == "Aonly" ]; then
+    if [[ $AONLY == true ]]; then
         # SourceForge Upload script by github.com/yukosky
         cd "${OUTPUTDIR}"
         echo "-> Uploading to SourceForge"
         expect -c "
         spawn sftp $USER@frs.sourceforge.net
+        expect \"yes/no\"
+        send \"yes\r\"
         expect \"Password\"
         send \"$PASSWORD\r\"
         expect \"sftp> \"

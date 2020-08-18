@@ -101,17 +101,20 @@ LEAVE()
     exit 1
 }
 
+echo "-> Updating tools..."
+"$PROJECT_DIR"/update.sh
+
 echo "-> Removing possible residuals from previous builds to avoid problems"
-   if [ -d "$PROJECT_DIR/working/system/" ]; then
-       sudo umount "$PROJECT_DIR/working/system/"
+   if [ -d "$PROJECT_DIR/working/" ]; then
+       sudo umount "$PROJECT_DIR/working/"
+       sudo rm -rf "$PROJECT_DIR/working/"
    fi
    if [ -d "$PROJECT_DIR/tools/ROM_resigner/tmp/" ]; then
        sudo rm -rf "$PROJECT_DIR/tools/ROM_resigner/tmp/"
    fi
-   sudo rm -rf working tmp
-
-echo "-> Updating tools..."
-"$PROJECT_DIR"/update.sh
+   if [ -d "$PROJECT_DIR/tmp/" ]; then
+       sudo rm -rf "$PROJECT_DIR/tmp/"
+   fi
 
 # Create input & working directory if it does not exist
 mkdir -p "$PROJECT_DIR/input" "$PROJECT_DIR/working" "$PROJECT_DIR/output"

@@ -10,6 +10,3 @@
 [submodule "tools/oppo_ozip_decrypt"]
 	path = tools/oppo_ozip_decrypt
 	url = https://github.com/bkerler/oppo_ozip_decrypt.git
-[submodule "tools/payload-dumper"]
-	path = tools/payload-dumper
-	url = https://github.com/Treble-Experience/payload-dumper
